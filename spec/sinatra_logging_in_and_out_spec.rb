@@ -22,7 +22,8 @@ describe 'ApplicationController' do
 
     it "returns a 302 redirect status code" do
       params = {
-        "username"=> "skittles123", "password" => "iluvskittles"
+        "username" => "skittles123",
+        "password" => "iluvskittles"
       }
       post '/login', params
       expect(last_response.status).to eq(302)
@@ -30,7 +31,8 @@ describe 'ApplicationController' do
 
     it "sets session[:user_id] equal to id of the user" do
       post '/login', {
-        "username"=> "flatiron4lyfe", "password" => "Rubie!"
+        "username" => "flatiron4lyfe",
+        "password" => "Rubie!"
       }
       follow_redirect!
       expect(session[:user_id]).to eq(2)
@@ -97,13 +99,11 @@ describe 'ApplicationController' do
       get '/logout'
       expect(session[:user_id]).to be(nil)
     end
-    
+
     it 'redirects to \'/\'' do
       get '/logout'
       follow_redirect!
       expect(last_request.path_info).to eq('/')
     end
-
   end
-
 end
